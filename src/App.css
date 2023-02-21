@@ -1,4 +1,176 @@
 .App {
   /* border: 5px solid red; */
   min-height: 100vh;
+  position: relative;
+}
+
+/* Pexels Key vObntOiWdHqko9u1qXFy23w0wNw7UwbqpcqkdscTNGjAUrlkPVYJp7Vr */
+/* // const API_KEY =
+        //   "vObntOiWdHqko9u1qXFy23w0wNw7UwbqpcqkdscTNGjAUrlkPVYJp7Vr";
+        // const category = "cats";
+
+        // const url = `https://api.pexels.com/v1?query=${category}&per_page=9`;
+
+        // const response2 = fetch(url, {
+        //   headers: {
+        //     Authorization: API_KEY,
+        //   },
+        // }); */
+
+/* Unsplash:  // const response = await fetch(
+        //   `https://api.unsplash.com/photos/random?count=12&client_id=ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw&query=${searchQuery}`
+        // );
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Merriweather:wght@400;700&display=swap");
+.nav__component {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+  padding: 2rem;
+  align-items: center;
+  /* margin-bottom: 5rem; */
+}
+
+.logo {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  text-decoration: none;
+  color: black;
+}
+
+.search__form {
+  /* border: 2px solid red; */
+  min-width: 400px;
+  position: relative;
+}
+
+.search__form input {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  padding-left: 1rem;
+  font-family: "Merriweather", serif;
+  border-radius: 5px;
+  border: 1px solid #999;
+}
+
+.search__form input::placeholder {
+  font-family: "Merriweather", serif;
+}
+
+.search__form button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  height: calc(100% - 10px);
+  transform: translate(0, -50%);
+  padding: 1rem 2rem;
+  font-family: "Merriweather", serif;
+  border: 1px solid #888;
+  background: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search__form input:focus {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.theme {
+  font-size: 2rem;
+}
+
+.search__form {
+  /* border: 2px solid red; */
+  min-width: 400px;
+  position: relative;
+}
+
+.search__form input {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  padding-left: 1rem;
+  font-family: "Merriweather", serif;
+  border-radius: 5px;
+  border: 1px solid #999;
+}
+
+.search__form input::placeholder {
+  font-family: "Merriweather", serif;
+}
+
+.search__form button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  height: calc(100% - 10px);
+  transform: translate(0, -50%);
+  padding: 1rem 2rem;
+  font-family: "Merriweather", serif;
+  border: 1px solid #888;
+  background: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search__form input:focus {
+  /* border: none; */
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  border: 3px solid rgb(128, 58, 0);
+  padding: 2rem;
+  overflow: hidden;
+  height: auto;
+}
+
+.masonry-grid-item {
+  padding: 1rem;
+  overflow: hidden;
+  height: auto;
+  max-height: 600px;
+}
+
+.masonry-grid-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+}
+
+/* .masonry-grid-item:before {
+  content: "";
+  display: block;
+  padding-top: calc(100% / 1.5);
+} */
+
+/* @media only screen and (max-width: 768px) {
+  .masonry-grid-item:nth-child(2n) {
+    grid-row-start: span 2;
+  }
+} */
+
+@media only screen and (max-width: 767px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .masonry-grid-item:nth-child(2n) {
+    grid-row-start: span 2;
+  }
+
+  .masonry-grid-item:nth-child(3n) {
+    grid-row-start: auto;
+  }
+
+  .masonry-grid-item:nth-child(4n) {
+    grid-row-start: auto;
+  }
 }

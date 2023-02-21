@@ -1,6 +1,6 @@
 .masonry-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   border: 2px solid green;
   padding: 2rem;
@@ -12,17 +12,20 @@
 
 .masonry-grid-item {
   padding: 1rem;
-  border: 2px solid rgb(128, 38, 0);
+  /* border: 2px solid rgb(128, 38, 0); */
   overflow: hidden;
   height: auto;
+  max-height: 600px;
   /* width: fit-content; */
   /* max-width: 550px; */
 }
 
-.masonry-grid-item .masonry-grid-item img {
+.masonry-grid-item img {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  object-fit: contain;
+  display: block;
 }
 
 /* .masonry-grid-item:before {
