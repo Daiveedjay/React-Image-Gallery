@@ -20,12 +20,18 @@ export default function Calls({ searchQuery }) {
         }
 
         const fetchedImages = await response.json();
-        const test = { ...fetchedImages };
+        const searches = JSON.parse(localStorage.getItem("searches")) || [];
+        searches.push(searchQuery);
+        localStorage.setItem("searches", JSON.stringify(searches));
+
+        localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
+
+        // const test = { ...fetchedImages };
         // console.log(`Test is ${test}`);
         // console.log(fetchedImages);
 
         setIsPending(false);
-        setImages(test);
+        setImages(fetchedImages);
         // console.log(images);
         setError(null);
       } catch (error) {

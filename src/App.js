@@ -6,14 +6,17 @@ import Calls from "./Services/Calls";
 
 function App() {
   const query = useRef();
+  const buttonContainer = useRef();
   const [searchQuery, setSearchQuery] = useState("");
   // const [updateInput, setUpdateInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchQuery(query.current.value);
-    query.current.value = "";
+
     console.log(searchQuery);
+    buttonContainer.current.innerHTML += `<button> ${query.current.value}</button>`;
+    query.current.value = "";
   };
 
   return (
@@ -34,8 +37,7 @@ function App() {
         </form>
         <span className="theme">💡</span>
       </nav>
-
-      {searchQuery && <RenderButtons searchQuery={searchQuery} />}
+      <div ref={buttonContainer} className="render__buttons--container"></div>
 
       {searchQuery && <Calls searchQuery={searchQuery} />}
     </div>

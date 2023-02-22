@@ -29,7 +29,6 @@
   border: 2px solid black;
   padding: 2rem;
   align-items: center;
-  /* margin-bottom: 5rem; */
 }
 
 .logo {
@@ -40,8 +39,8 @@
 }
 
 .search__form {
-  /* border: 2px solid red; */
-  min-width: 400px;
+  max-width: 400px;
+
   position: relative;
 }
 
@@ -82,8 +81,9 @@
 }
 
 .search__form {
-  /* border: 2px solid red; */
-  min-width: 400px;
+  max-width: 40rem;
+  min-width: 20rem;
+  width: 100%;
   position: relative;
 }
 
@@ -122,7 +122,7 @@
 
 .masonry-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 2rem;
   border: 3px solid rgb(128, 58, 0);
   padding: 2rem;
@@ -145,21 +145,16 @@
   display: block;
 }
 
-/* .masonry-grid-item:before {
-  content: "";
-  display: block;
-  padding-top: calc(100% / 1.5);
-} */
-
-/* @media only screen and (max-width: 768px) {
-  .masonry-grid-item:nth-child(2n) {
-    grid-row-start: span 2;
-  }
-} */
-
 @media only screen and (max-width: 767px) {
-  .masonry-grid {
-    grid-template-columns: 1fr;
+  html {
+    /* 9px per rem */
+    font-size: 56.25%;
+  }
+  .logo {
+    font-size: 2.25rem;
+  }
+  .search__form {
+    max-width: 33rem;
   }
 
   .masonry-grid-item:nth-child(2n) {
@@ -172,5 +167,25 @@
 
   .masonry-grid-item:nth-child(4n) {
     grid-row-start: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    /* 8px per rem */
+    font-size: 50%;
+  }
+  .theme {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    /* 7px per rem */
+    font-size: 43.75%;
+  }
+  .search__form {
+    max-width: 30rem;
   }
 }
