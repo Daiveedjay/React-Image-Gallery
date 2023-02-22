@@ -6,6 +6,8 @@ export default function Calls({ searchQuery }) {
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -41,6 +43,14 @@ export default function Calls({ searchQuery }) {
     console.log(images.results);
   }, [images]);
 
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <>
       {error && <div>Oops, did you search for balablu? 😁</div>}
@@ -49,15 +59,32 @@ export default function Calls({ searchQuery }) {
         <div className="masonry-grid">
           {images.results &&
             images.results.map((image) => (
-              <div className="masonry-grid-item">
+              <div className="masonry-grid-item" key={image.id}>
                 <img
                   loading="lazy"
-                  key={image.id}
                   src={image.urls.regular}
                   alt={image.alt_description}
+                  onClick={() => handleImageClick(image)}
                 />
               </div>
             ))}
+          {selectedImage && (
+            <div
+              className="modal-overlay"
+              onClick={() => setSelectedImage(null)}
+            >
+              {" "}
+              <div className="modal-content">
+                <img
+                  src={selectedImage.urls.regular}
+                  alt={selectedImage.alt_description}
+                />
+                <button className="cancel-button" onClick={closeModal}>
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>

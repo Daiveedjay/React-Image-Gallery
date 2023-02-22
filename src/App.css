@@ -1,3 +1,13 @@
+:root {
+  --light-primary: #fff;
+  --color-primary: #0d1217;
+  transition: all ease-in 0.3s;
+}
+.darkmode {
+  --light-primary: #0d1217;
+  --color-primary: #fff;
+  transition: all ease-in 0.3s;
+}
 .App {
   /* border: 5px solid red; */
   min-height: 100vh;
@@ -26,21 +36,26 @@
 .nav__component {
   display: flex;
   justify-content: space-between;
-  border: 2px solid black;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: var(--light-primary);
+  color: var(--color-primary);
+  z-index: 2;
 }
 
 .logo {
   font-family: "Dancing Script", cursive;
   font-size: 3rem;
   text-decoration: none;
-  color: black;
+  color: var(--color-primary);
 }
 
 .search__form {
   max-width: 400px;
-
   position: relative;
 }
 
@@ -51,10 +66,13 @@
   font-family: "Merriweather", serif;
   border-radius: 5px;
   border: 1px solid #999;
+  color: #0d1217;
+  caret-color: #0d1217;
 }
 
 .search__form input::placeholder {
   font-family: "Merriweather", serif;
+  color: #999;
 }
 
 .search__form button {
@@ -69,6 +87,7 @@
   background: none;
   border-radius: 5px;
   cursor: pointer;
+  color: #0d1217;
 }
 
 .search__form input:focus {
@@ -76,8 +95,8 @@
   outline: none;
 }
 
-.theme {
-  font-size: 2rem;
+.theme--switch {
+  font-size: 2.5rem;
 }
 
 .search__form {
@@ -124,10 +143,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 2rem;
-  border: 3px solid rgb(128, 58, 0);
+  /* border: 3px solid rgb(128, 58, 0); */
   padding: 2rem;
   overflow: hidden;
   height: auto;
+  /* background: #0e1319; */
+  background: var(--light-primary);
+  box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .masonry-grid-item {
@@ -175,8 +198,26 @@
     /* 8px per rem */
     font-size: 50%;
   }
-  .theme {
-    display: none;
+  .theme--switch {
+    position: absolute;
+    top: 95vh;
+    left: 50%;
+    width: 100%;
+    max-width: 50px;
+    height: 100%;
+    border-radius: 50%;
+    max-height: 50px;
+    /* border: 2px solid red; */
+    text-align: center;
+    margin-top: -4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--light-primary);
+    transform: translateX(-50%);
+    /* transform: translate(-50%, -50%); */
+
+    /* padding-bottom: 2rem; */
   }
 }
 
