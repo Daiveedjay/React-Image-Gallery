@@ -26,13 +26,8 @@ export default function Calls({ searchQuery }) {
 
         localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
 
-        // const test = { ...fetchedImages };
-        // console.log(`Test is ${test}`);
-        // console.log(fetchedImages);
-
         setIsPending(false);
         setImages(fetchedImages);
-        // console.log(images);
         setError(null);
       } catch (error) {
         setIsPending(false);
@@ -44,11 +39,9 @@ export default function Calls({ searchQuery }) {
 
   useEffect(() => {
     console.log(images.results);
-    // console.log(images.results.id);
   }, [images]);
 
   return (
-    // <div>Render successful </div>
     <>
       {error && <div>Oops, did you search for balablu? 😁</div>}
       {isPending && <span className="loader"></span>}

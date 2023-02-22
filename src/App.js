@@ -1,22 +1,47 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import RenderButtons from "./components/RenderButtons/RenderButtons";
 import Calls from "./Services/Calls";
-// import SearchResults from "./components/SearchResults/SearchResults";
 
 function App() {
   const query = useRef();
   const buttonContainer = useRef();
   const [searchQuery, setSearchQuery] = useState("");
-  // const [updateInput, setUpdateInput] = useState("");
+  const [searches, setSearches] = useState(
+    JSON.parse(localStorage.getItem("searches")) || []
+  );
+
+  useEffect(() => {
+    const storedSearches = JSON.parse(localStorage.getItem("searches"));
+    if (storedSearches) {
+      const uniqueSearches = Array.from(new Set(storedSearches));
+      setSearches(uniqueSearches);
+      // setSearches(storedSearches);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchQuery(query.current.value);
+    const queryValue = query.current.value.trim();
+    // setSearchQuery(queryValue);
 
+    if (queryValue) {
+      if (!searches.includes(queryValue)) {
+        setSearches((prevSearches) => {
+          const newSearches = [...prevSearches, queryValue];
+          localStorage.setItem("searches", JSON.stringify(newSearches));
+          return newSearches;
+        });
+      }
+      setSearchQuery(queryValue);
+    }
     console.log(searchQuery);
-    buttonContainer.current.innerHTML += `<button> ${query.current.value}</button>`;
     query.current.value = "";
+  };
+
+  const handleButtonClick = (queryValue) => {
+    setSearchQuery(queryValue);
+    console.log("Yes");
   };
 
   return (
@@ -37,7 +62,14 @@ function App() {
         </form>
         <span className="theme">💡</span>
       </nav>
-      <div ref={buttonContainer} className="render__buttons--container"></div>
+      <div ref={buttonContainer} className="render__buttons--container">
+        {searches &&
+          searches.map((search) => (
+            <button key={search} onClick={() => handleButtonClick(search)}>
+              {search}
+            </button>
+          ))}
+      </div>
 
       {searchQuery && <Calls searchQuery={searchQuery} />}
     </div>
