@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import RenderButtons from "./components/RenderButtons/RenderButtons";
 import RenderErrorModal from "./components/RenderErrorModal/RenderErrorModal";
 import Calls from "./Services/Calls";
 
@@ -12,7 +11,11 @@ function App() {
     JSON.parse(localStorage.getItem("searches")) || []
   );
   const [searchLimit, setSearchLimit] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  // const [searchError, setSearchError] = useState(null);
+
+  const [darkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem("darkMode")) || false
+  );
 
   useEffect(() => {
     const storedSearches = JSON.parse(localStorage.getItem("searches"));
@@ -26,31 +29,34 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const queryValue = query.current.value.trim();
-    // setSearchQuery(queryValue);
 
-    if (queryValue) {
-      if (searches.length >= 5) {
-        setSearchLimit(true);
-        setTimeout(() => {
-          setSearchLimit(false);
-        }, 3000);
+    if (!queryValue) return;
 
-        // alert("You have exceeded the limit of 5 searches.");
-      } else if (!searches.includes(queryValue)) {
-        setSearches((prevSearches) => {
-          const newSearches = [...prevSearches, queryValue];
-          localStorage.setItem("searches", JSON.stringify(newSearches));
-          return newSearches;
-        });
-        setSearchQuery(queryValue);
-      }
-
-      // setSearchCount(searchCount + 1);
-      // console.log(searchCount);
+    if (searches.length >= 5) {
+      setSearchLimit(true);
+      setTimeout(() => {
+        setSearchLimit(false);
+      }, 3000);
+      return;
     }
+
+    if (searches.includes(queryValue)) return;
+
+    setSearches((prevSearches) => {
+      const newSearches = [...prevSearches, queryValue];
+      localStorage.setItem("searches", JSON.stringify(newSearches));
+      return newSearches;
+    });
+
+    setSearchQuery(queryValue);
+
     console.log(searchQuery);
     query.current.value = "";
   };
@@ -62,8 +68,6 @@ function App() {
   const toggleMode = () => {
     setDarkMode(!darkMode);
   };
-
-  // {`App ${isDarkMode ? "dark-mode" : ""}
 
   return (
     <div className={`App ${darkMode ? "darkmode" : ""}`}>
@@ -86,10 +90,10 @@ function App() {
           onClick={toggleMode}
         ></i>
         {searchLimit && <RenderErrorModal />}
-        {/* <RenderErrorModal /> */}
       </nav>
       <div ref={buttonContainer} className="render__buttons--container">
         {searches &&
+          searches !== undefined &&
           searches.map((search) => (
             <button
               key={Math.random() * 10000}

@@ -142,7 +142,7 @@
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2rem;
+  gap: 0rem;
   /* border: 3px solid rgb(128, 58, 0); */
   padding: 2rem;
   overflow: hidden;
@@ -151,13 +151,16 @@
   background: var(--light-primary);
   box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.1);
   position: relative;
+  row-gap: 1rem;
 }
 
 .masonry-grid-item {
-  padding: 1rem;
+  padding: 2rem;
   overflow: hidden;
   height: auto;
   max-height: 600px;
+  position: relative;
+  transition: all ease-in 0.3s;
 }
 
 .masonry-grid-item img {
@@ -166,6 +169,27 @@
   border-radius: 10px;
   object-fit: contain;
   display: block;
+}
+
+.details {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.details a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.image-description {
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  text-transform: capitalize;
 }
 
 @media only screen and (max-width: 767px) {

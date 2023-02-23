@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
 
 import "./Calls.css";
 export default function Calls({ searchQuery }) {
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
+  const [searchError, setSearchError] = useState(false);
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  // const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -22,18 +24,27 @@ export default function Calls({ searchQuery }) {
         }
 
         const fetchedImages = await response.json();
-        const searches = JSON.parse(localStorage.getItem("searches")) || [];
-        searches.push(searchQuery);
-        localStorage.setItem("searches", JSON.stringify(searches));
+        if (fetchedImages.total === 0) {
+          setIsPending(false);
+          setSearchError(true);
+          setTimeout(() => {
+            setSearchError(false);
+          }, 3500);
+        } else if (fetchedImages.total > 0) {
+          const searches = JSON.parse(localStorage.getItem("searches")) || [];
+          searches.push(searchQuery);
+          localStorage.setItem("searches", JSON.stringify(searches));
 
-        localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
+          localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
 
-        setIsPending(false);
-        setImages(fetchedImages);
-        setError(null);
+          setIsPending(false);
+          setImages(fetchedImages);
+          // setError(null);
+        }
       } catch (error) {
         setIsPending(false);
-        setError("Could not fetch the data");
+        console.log(error);
+        // setError("Could not fetch the data");
       }
     };
     fetchImages();
@@ -43,17 +54,23 @@ export default function Calls({ searchQuery }) {
     console.log(images.results);
   }, [images]);
 
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-  };
+  // const errorSearch = () => {
 
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
+  // };
+
+  // const handleImageClick = (image) => {
+  //   setSelectedImage(image);
+  // };
+
+  // const closeModal = () => {
+  //   setSelectedImage(null);
+  // };
 
   return (
     <>
-      {error && <div>Oops, did you search for balablu? 😁</div>}
+      {searchError && (
+        <div className="error--modal">Oops, did you search for balablu? 😁</div>
+      )}
       {isPending && <span className="loader"></span>}
       {images.results && (
         <div className="masonry-grid">
@@ -64,11 +81,17 @@ export default function Calls({ searchQuery }) {
                   loading="lazy"
                   src={image.urls.regular}
                   alt={image.alt_description}
-                  onClick={() => handleImageClick(image)}
+                  // onClick={() => handleImageClick(image)}
                 />
+                <div className="details">
+                  <p className="image-description">{image.alt_description}</p>
+                  <a target="_blank" rel="noreferrer" href={image.links.html}>
+                    <i className="fa-solid fa-link"></i>
+                  </a>
+                </div>
               </div>
             ))}
-          {selectedImage && (
+          {/* {selectedImage && (
             <div
               className="modal-overlay"
               onClick={() => setSelectedImage(null)}
@@ -84,7 +107,7 @@ export default function Calls({ searchQuery }) {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </>
