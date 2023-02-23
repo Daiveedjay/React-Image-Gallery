@@ -223,7 +223,7 @@
     font-size: 50%;
   }
   .theme--switch {
-    position: absolute;
+    position: fixed;
     top: 90vh;
     left: 50%;
     width: 100%;
