@@ -17,11 +17,9 @@ export default function Calls({ searchQuery }) {
         // const API_KEY = "ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw";
         const API_KEY = "Z0tlw9QPJ4IqguNkjH8Su_qwKOvru9DZuFGfntPSkXc";
         const response = await fetch(
-          `https://api.unsplash.com/search/photos?page=1&client_id=${API_KEY}&query=${searchQuery}`
+          `https://api.unsplash.com/search/photos?page=1&per_page=12&client_id=${API_KEY}&query=${searchQuery}`
         );
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
+        if (!response.ok) throw new Error(response.statusText);
 
         const fetchedImages = await response.json();
         if (fetchedImages.total === 0) {
@@ -34,18 +32,16 @@ export default function Calls({ searchQuery }) {
           const searches = JSON.parse(localStorage.getItem("searches")) || [];
           searches.push(searchQuery);
           localStorage.setItem("searches", JSON.stringify(searches));
-
           localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
-
           setIsPending(false);
           setImages(fetchedImages);
-          // setError(null);
         }
       } catch (error) {
         setIsPending(false);
         console.log(error);
-        // setError("Could not fetch the data");
       }
+      // console.log("Yessir");
+      // console.log(fetchImages);
     };
     fetchImages();
   }, [searchQuery]);
@@ -53,18 +49,6 @@ export default function Calls({ searchQuery }) {
   useEffect(() => {
     console.log(images.results);
   }, [images]);
-
-  // const errorSearch = () => {
-
-  // };
-
-  // const handleImageClick = (image) => {
-  //   setSelectedImage(image);
-  // };
-
-  // const closeModal = () => {
-  //   setSelectedImage(null);
-  // };
 
   return (
     <>
@@ -81,33 +65,27 @@ export default function Calls({ searchQuery }) {
                   loading="lazy"
                   src={image.urls.regular}
                   alt={image.alt_description}
-                  // onClick={() => handleImageClick(image)}
                 />
                 <div className="details">
-                  <p className="image-description">{image.alt_description}</p>
-                  <a target="_blank" rel="noreferrer" href={image.links.html}>
-                    <i className="fa-solid fa-link"></i>
-                  </a>
+                  <p className="username">
+                    By: <span> {image.user.name}</span>
+                  </p>
+                  <div className="socials">
+                    {" "}
+                    <a target="_blank" rel="noreferrer" href={image.links.html}>
+                      <i className="fa-solid fa-link"></i>
+                    </a>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={image.links.download}
+                    >
+                      <i className="fa-solid fa-download"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
-          {/* {selectedImage && (
-            <div
-              className="modal-overlay"
-              onClick={() => setSelectedImage(null)}
-            >
-              {" "}
-              <div className="modal-content">
-                <img
-                  src={selectedImage.urls.regular}
-                  alt={selectedImage.alt_description}
-                />
-                <button className="cancel-button" onClick={closeModal}>
-                  Close
-                </button>
-              </div>
-            </div>
-          )} */}
         </div>
       )}
     </>

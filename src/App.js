@@ -89,9 +89,9 @@ function App() {
   return (
     <div className={`App ${darkMode ? "darkmode" : ""}`}>
       <nav className="nav__component">
-        <span to="/" className="logo">
+        <a href="/" to="/" className="logo">
           Pixplorer
-        </span>
+        </a>
         <form onSubmit={handleSubmit} className="search__form">
           <input
             type="text"
