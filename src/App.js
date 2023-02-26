@@ -1,31 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
-import RenderErrorModal from "./components/RenderErrorModal/RenderErrorModal";
+import IntroText from "./components/IntroText/IntroText";
 import Calls from "./Services/Calls";
+import SearchButtonsContainer from "./components/SearchButtonsContainer/SearchButtonsContainer";
+import Navbar from "../src/components/NavBar/NavBar";
+import SearchForm from "./components/SearchForm/SearchForm";
+import RenderErrorModal from "./components/RenderErrorModal/RenderErrorModal";
+import ToggleMode from "./components/ToggleMode/ToggleMode";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  // Reference to user inour value
   const query = useRef();
-  // Reference to container that holds all rendred buttons
   const buttonContainer = useRef();
-  // State of search query
+
   const [searchQuery, setSearchQuery] = useState("");
-  // State of array of searched queries
   const [searches, setSearches] = useState(
     JSON.parse(localStorage.getItem("searches")) || []
   );
   const [searchLimit, setSearchLimit] = useState(false);
-  // const [searchError, setSearchError] = useState(null);
-
-  // Darkmode state
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
 
-  // Loading all data stored in local storage
   useEffect(() => {
     const storedSearches = JSON.parse(localStorage.getItem("searches"));
     if (!storedSearches) return;
+
     const uniqueSearches = Array.from(new Set(storedSearches));
     setSearches(uniqueSearches);
 
@@ -35,20 +35,15 @@ function App() {
     }
   }, []);
 
-  // Load Dark mode
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
-  // Handles submit funtionality
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Grabs the value in the search bar
-    const queryValue = query.current.value.trim();
-
+    // e.preventDefault();
+    const queryValue = query.current?.value?.trim();
     if (!queryValue) return;
 
-    // Checks if a user has searched for more than 5 things
     if (searches.length >= 5) {
       setSearchLimit(true);
       setTimeout(() => {
@@ -57,10 +52,8 @@ function App() {
       return;
     }
 
-    // If the user has searched for
-    if (searches.includes(queryValue)) return;
+    if (searches.includes(queryValue)) query.current.value = "";
 
-    // Sets the searched value in local storage
     setSearches((prevSearches) => {
       const newSearches = [...prevSearches, queryValue];
       localStorage.setItem("searches", JSON.stringify(newSearches));
@@ -68,59 +61,33 @@ function App() {
     });
 
     setSearchQuery(queryValue);
-
-    console.log(searchQuery);
-    // Clears the input field after eachh search
     query.current.value = "";
   };
+  const boundHandleSubmit = handleSubmit.bind(this);
 
-  // Stores the value of the user's search on click of the button
   const handleButtonClick = (queryValue) => {
     setSearchQuery(queryValue);
   };
 
-  // Darkmode toggle
   const toggleMode = () => {
     setDarkMode(!darkMode);
+    // console.log("Success");
   };
-  console.log("Yes");
-  console.log(searches);
 
   return (
     <div className={`App ${darkMode ? "darkmode" : ""}`}>
-      <nav className="nav__component">
-        <a href="/" to="/" className="logo">
-          Pixplorer
-        </a>
-        <form onSubmit={handleSubmit} className="search__form">
-          <input
-            type="text"
-            id="search"
-            required
-            placeholder="Enter a category"
-            ref={query}
-          />
-          <button>Search</button>
-        </form>
-        <i
-          className="fa-light fa-light-switch theme--switch"
-          onClick={toggleMode}
-        ></i>
-        {searchLimit && <RenderErrorModal />}
-      </nav>
-      <div ref={buttonContainer} className="render__buttons--container">
-        {searches &&
-          searches.map((search) => (
-            <button
-              key={Math.random() * 10000}
-              onClick={() => handleButtonClick(search)}
-            >
-              {search}
-            </button>
-          ))}
-      </div>
+      {!searchQuery && <IntroText />}
+      <Navbar toggleMode={toggleMode} />
+      <SearchForm query={query} handleSubmit={boundHandleSubmit} />
 
+      {searchLimit && <RenderErrorModal />}
+      <SearchButtonsContainer
+        searches={searches}
+        handleButtonClick={handleButtonClick}
+        buttonContainer={buttonContainer}
+      />
       {searchQuery && <Calls searchQuery={searchQuery} />}
+      <Footer />
     </div>
   );
 }

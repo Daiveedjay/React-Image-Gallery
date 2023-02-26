@@ -1,9 +1,11 @@
 import "./RenderErrorModal.css";
 
-export default function RenderErrorModal() {
+function RenderErrorModal() {
   return (
-    <div className="error--modal">
-      Sorry, you've exceeded your search limit of 5 searches. 😅
+    <div className="error__modal">
+      You have reached the maximum number of searches allowed (5).
     </div>
   );
 }
+
+export default RenderErrorModal;

@@ -1,5 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Merriweather:wght@400;700&display=swap"); */
 
+@import url("../App.css");
 .loader {
   width: 50px;
   height: 50px;
@@ -25,8 +26,28 @@
   border-color: #ff3d00;
 }
 
+.error--modal {
+  font-size: 2rem;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  z-index: 4;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  max-height: 200px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 2;
+  border-radius: 2rem;
+  background: #efeded;
+  font-family: "Merriweather", serif;
+}
+
 .render__buttons--container {
-  min-height: 100px;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -42,13 +63,13 @@
   font-family: "Merriweather", serif;
   font-weight: 700;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   letter-spacing: 1px;
   position: relative;
   transition: all 1s;
   cursor: pointer;
   overflow: hidden;
-  color: #0d1217;
+  color: var(--color-primary);
   z-index: 1;
   font-family: "Merriweather", serif;
 }
@@ -60,14 +81,14 @@
   height: 100%;
   top: 0px;
   left: -100%;
-  background: #80bceb;
+  background: var(--color-secondary);
   z-index: -1;
   transition: all 0.5s;
 }
 
 .render__buttons--container button:hover {
   color: #fff;
-  border: 1px solid #80bceb;
+  border: 1px solid var(--color-secondary);
 }
 
 .render__buttons--container button:hover::before {
@@ -75,7 +96,7 @@
 }
 
 .active {
-  background: #999;
+  background: var(--color-secondary);
 }
 
 @keyframes rotate {
@@ -123,7 +144,7 @@
 }
 
 .socials a:hover {
-  color: #80bceb;
+  color: var(--color-secondary);
   transform: translateY(-2px);
 }
 

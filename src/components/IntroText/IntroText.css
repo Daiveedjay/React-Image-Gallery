@@ -1,0 +1,80 @@
+@import url("../../App.css");
+
+.intro__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  line-height: 2.5;
+  font-family: "Merriweather", serif;
+  color: var(--color-primary);
+}
+
+.intro__text h1 {
+  font-size: 5rem;
+  text-shadow: 0 1px 0 #efefef, 0 1px 0 #efefef, 0 1px 0 #efefef,
+    0 1px 0 #efefef, 0 30px 5px rgba(0, 0, 0, 0.1);
+  animation-name: bounce;
+  animation-duration: 1.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+.intro__text span {
+  font-family: "Dancing Script", cursive;
+}
+.intro__text p {
+  font-size: 3rem;
+  animation-name: bounce;
+
+  animation-duration: 1.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 900px) {
+  .intro__text h1 {
+    font-size: 3.5rem;
+  }
+
+  .intro__text p {
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .intro__text h1 {
+    font-size: 2.75rem;
+  }
+
+  .intro__text p {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .intro__text h1 {
+    font-size: 2.25rem;
+  }
+
+  .intro__text p {
+    font-size: 1.2rem;
+  }
+}

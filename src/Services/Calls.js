@@ -17,7 +17,7 @@ export default function Calls({ searchQuery }) {
         // const API_KEY = "ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw";
         const API_KEY = "Z0tlw9QPJ4IqguNkjH8Su_qwKOvru9DZuFGfntPSkXc";
         const response = await fetch(
-          `https://api.unsplash.com/search/photos?page=1&per_page=12&client_id=${API_KEY}&query=${searchQuery}`
+          `https://api.unsplash.com/search/photos?page=2&per_page=12&client_id=${API_KEY}&query=${searchQuery}`
         );
         if (!response.ok) throw new Error(response.statusText);
 
@@ -40,8 +40,7 @@ export default function Calls({ searchQuery }) {
         setIsPending(false);
         console.log(error);
       }
-      // console.log("Yessir");
-      // console.log(fetchImages);
+      console.log("Yessir");
     };
     fetchImages();
   }, [searchQuery]);
@@ -53,7 +52,10 @@ export default function Calls({ searchQuery }) {
   return (
     <>
       {searchError && (
-        <div className="error--modal">Oops, did you search for balablu? 😁</div>
+        <div className="error--modal">
+          Oops, it seems you spelt something incorectly or searched for
+          something not in our database.
+        </div>
       )}
       {isPending && <span className="loader"></span>}
       {images.results && (
