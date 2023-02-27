@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 
 import "./Calls.css";
 export default function Calls({ searchQuery }) {
   const [isPending, setIsPending] = useState(false);
-  // const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
   const [searchError, setSearchError] = useState(false);
 
@@ -13,11 +11,13 @@ export default function Calls({ searchQuery }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
+        // Generates a random page number
+        // const pageNum = Math.floor(Math.random() * 5);
         setIsPending(true);
         // const API_KEY = "ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw";
         const API_KEY = "Z0tlw9QPJ4IqguNkjH8Su_qwKOvru9DZuFGfntPSkXc";
         const response = await fetch(
-          `https://api.unsplash.com/search/photos?page=2&per_page=12&client_id=${API_KEY}&query=${searchQuery}`
+          `https://api.unsplash.com/search/photos?page=1&per_page=20&client_id=${API_KEY}&query=${searchQuery}`
         );
         if (!response.ok) throw new Error(response.statusText);
 

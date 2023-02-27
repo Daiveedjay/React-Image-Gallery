@@ -1,5 +1,6 @@
 import RenderErrorModal from "../RenderErrorModal/RenderErrorModal";
 
+import './NavBar.css'
 function Navbar({ toggleMode, searchLimit }) {
   return (
     <nav className="nav__component">

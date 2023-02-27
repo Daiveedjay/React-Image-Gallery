@@ -1,5 +1,5 @@
 import SearchButton from "../SearchButton/SearchButton";
-
+import "./SearchButtonsContainer.css";
 function SearchButtonsContainer({ searches, handleButtonClick }) {
   return (
     <div className="render__buttons--container">

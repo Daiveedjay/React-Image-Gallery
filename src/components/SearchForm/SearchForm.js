@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import "./SearchForm.css";
+
+// import { useRef } from "react";
 import RenderErrorModal from "../RenderErrorModal/RenderErrorModal";
 
 function SearchForm({ handleSubmit, searchLimit, query }) {

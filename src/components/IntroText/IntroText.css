@@ -15,29 +15,13 @@
 
 .intro__text h1 {
   font-size: 5rem;
-  animation-name: gallery-header;
-  animation-duration: 3s;
+  animation-name: lead-header;
+  animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
-  /* animation-iteration-count: infinite; */
-  /* animation: bounce 1s ease-in-out infinite;
-  transform-style: preserve-3d;
-  transform-origin: bottom;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); */
-  /* text-shadow: 0 1px 0 #efefef, 0 1px 0 #efefef, 0 1px 0 #efefef,
-    0 1px 0 #efefef, 0 30px 5px rgba(0, 0, 0, 0.1); */
-  /* animation-name: bounce;
-  animation-duration: 1.5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  animation-iteration-count: infinite;
-
-} */
-  /* animation: bounce 1s ease-in-out infinite; */
-  /* animation: mesmerize 8s ease-in-out infinite; */
 }
 
-@keyframes gallery-header {
+@keyframes lead-header {
   0% {
     transform: translateY(-25px);
     opacity: 0;
@@ -47,7 +31,7 @@
     opacity: 1;
   }
 }
-@keyframes gallery-p {
+@keyframes sub-text {
   0% {
     transform: translateY(25px);
     opacity: 0;
@@ -79,8 +63,8 @@
 }
 .intro__text p {
   font-size: 3rem;
-  animation-name: gallery-p;
-  animation-duration: 3s;
+  animation-name: sub-text;
+  animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }

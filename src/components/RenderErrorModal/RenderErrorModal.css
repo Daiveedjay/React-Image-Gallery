@@ -15,7 +15,10 @@
   align-items: center;
   line-height: 2;
   border-radius: 2rem;
-  background: #efeded;
+  /* background: #efeded; */
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   height: 200px;
   font-family: "Merriweather", serif;
   padding: 2rem;

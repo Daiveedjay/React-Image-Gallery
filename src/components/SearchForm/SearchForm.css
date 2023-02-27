@@ -1,0 +1,68 @@
+@import url("../../App.css");
+
+.search__form {
+  max-width: 40rem;
+  min-width: 20rem;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 2rem;
+  /* padding: 2rem 0; */
+}
+
+.search__form input {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  padding-left: 1rem;
+  font-family: "Merriweather", serif;
+  border-radius: 5px;
+  border: 1px solid #999;
+  color: #0d1217;
+  caret-color: #0d1217;
+}
+
+.search__form input::placeholder {
+  font-family: "Merriweather", serif;
+}
+
+.search__form button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  height: calc(100% - 10px);
+  transform: translate(0, -50%);
+  padding: 1rem 2rem;
+  font-family: "Merriweather", serif;
+  border: 1px solid #999;
+  background: none;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  color: #0d1217;
+}
+
+.search__form button:hover {
+  color: #fff;
+}
+
+.search__form button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--color-secondary);
+  transition: all ease-in 0.3s;
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+.search__form button:hover:before {
+  transform: translateX(0);
+}
+
+.search__form input:focus {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
