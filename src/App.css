@@ -72,31 +72,6 @@
   }
 }
 
-@media (max-width: 500px) {
-  html {
-    /* 8px per rem */
-    font-size: 50%;
-  }
-  .theme--switch {
-    position: fixed;
-    top: 90vh;
-    left: 50%;
-    width: 100%;
-    max-width: 50px;
-    height: 100%;
-    border-radius: 50%;
-    max-height: 50px;
-    text-align: center;
-    margin-top: -4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--light-primary);
-    transform: translateX(-50%);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1);
-  }
-}
-
 @media (max-width: 400px) {
   html {
     /* 7px per rem */

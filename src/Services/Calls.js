@@ -15,6 +15,7 @@ export default function Calls({ searchQuery }) {
         // const pageNum = Math.floor(Math.random() * 5);
         setIsPending(true);
         // const API_KEY = "ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw";
+        // const API_KEY = process.env("API_KEY");
         const API_KEY = "Z0tlw9QPJ4IqguNkjH8Su_qwKOvru9DZuFGfntPSkXc";
         const response = await fetch(
           `https://api.unsplash.com/search/photos?page=1&per_page=24&client_id=${API_KEY}&query=${searchQuery}`
