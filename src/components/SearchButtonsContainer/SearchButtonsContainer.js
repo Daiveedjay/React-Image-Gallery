@@ -1,6 +1,6 @@
 import SearchButton from "../SearchButton/SearchButton";
 import "./SearchButtonsContainer.css";
-function SearchButtonsContainer({ searches, handleButtonClick }) {
+function SearchButtonsContainer({ searches, setSearches, handleButtonClick }) {
   return (
     <div className="render__buttons--container">
       {searches &&
@@ -8,6 +8,8 @@ function SearchButtonsContainer({ searches, handleButtonClick }) {
           <SearchButton
             key={Math.random() * 10000}
             search={search}
+            searches={searches}
+            setSearches={setSearches}
             handleButtonClick={handleButtonClick}
           />
         ))}

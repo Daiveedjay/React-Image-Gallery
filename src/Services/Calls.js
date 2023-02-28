@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "./Calls.css";
-export default function Calls({ searchQuery }) {
+export default function Calls({ searchQuery, searches, setSearches }) {
   const [isPending, setIsPending] = useState(false);
   const [images, setImages] = useState([]);
   const [searchError, setSearchError] = useState(false);
@@ -27,11 +27,20 @@ export default function Calls({ searchQuery }) {
           setSearchError(true);
           setTimeout(() => {
             setSearchError(false);
+            const list = searches.fliter((x) => x !== searchQuery);
+            setSearches(list);
+            localStorage.setItem(
+              "searches",
+              JSON.stringify([...new Set(list)])
+            );
           }, 3500);
         } else if (fetchedImages.total > 0) {
           const searches = JSON.parse(localStorage.getItem("searches")) || [];
           searches.push(searchQuery);
-          localStorage.setItem("searches", JSON.stringify(searches));
+          localStorage.setItem(
+            "searches",
+            JSON.stringify([...new Set(searches)])
+          );
           localStorage.setItem(searchQuery, JSON.stringify(fetchedImages));
           setIsPending(false);
           setImages(fetchedImages);
@@ -43,7 +52,7 @@ export default function Calls({ searchQuery }) {
       console.log("Yessir");
     };
     fetchImages();
-  }, [searchQuery]);
+  }, [searchQuery, searches, setSearches]);
 
   useEffect(() => {
     console.log(images.results);

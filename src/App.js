@@ -54,7 +54,7 @@ function App() {
     if (!queryValue) return;
 
     // Checks if user has exceeded 5 searches
-    if (searches.length >= 5) {
+    if (searches.length > 5) {
       setSearchLimit(true);
       setTimeout(() => {
         setSearchLimit(false);
@@ -68,14 +68,17 @@ function App() {
     // Stores each search in local storage
     setSearches((prevSearches) => {
       const newSearches = [...prevSearches, queryValue];
-      localStorage.setItem("searches", JSON.stringify(newSearches));
+      localStorage.setItem(
+        "searches",
+        JSON.stringify([...new Set(newSearches)])
+      );
       return newSearches;
     });
 
     setSearchQuery(queryValue);
     query.current.value = "";
   };
-// Binds the this keyword to the handle submit
+  // Binds the this keyword to the handle submit
   const boundHandleSubmit = handleSubmit.bind(this);
 
   // Renders search result on click of any of the rendred buttons
@@ -97,10 +100,17 @@ function App() {
       {searchLimit && <RenderErrorModal />}
       <SearchButtonsContainer
         searches={searches}
+        setSearches={setSearches}
         handleButtonClick={handleButtonClick}
         buttonContainer={buttonContainer}
       />
-      {searchQuery && <Calls searchQuery={searchQuery} />}
+      {searchQuery && (
+        <Calls
+          searches={searches}
+          setSearches={setSearches}
+          searchQuery={searchQuery}
+        />
+      )}
       <Footer />
     </div>
   );
