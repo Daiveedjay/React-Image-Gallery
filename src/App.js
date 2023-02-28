@@ -29,6 +29,8 @@ function App() {
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
 
+  // const [activeButton, setActiveButton] = useState(null);
+
   // Load from local storage
   useEffect(() => {
     const storedSearches = JSON.parse(localStorage.getItem("searches"));
@@ -75,12 +77,13 @@ function App() {
     setSearchQuery(queryValue);
     query.current.value = "";
   };
-// Binds the this keyword to the handle submit
+  // Binds the this keyword to the handle submit
   const boundHandleSubmit = handleSubmit.bind(this);
 
   // Renders search result on click of any of the rendred buttons
   const handleButtonClick = (queryValue) => {
     setSearchQuery(queryValue);
+    // setActiveButton(image.id);
   };
 
   // Toggles dark mode

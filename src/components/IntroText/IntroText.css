@@ -1,16 +1,35 @@
 @import url("../../App.css");
+/* @import url('../../assests/Intro_bg.jpg'); */
 
 .intro__text {
   position: absolute;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   width: 100%;
   text-align: center;
   padding: 2rem;
   line-height: 2.5;
   font-family: "Merriweather", serif;
   color: var(--color-primary);
+  /* border: 2px solid red; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: url("../../assests/Intro_bg.jpg");
+}
+
+.intro__text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .intro__text h1 {
@@ -19,6 +38,8 @@
   animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
+  z-index: 2;
+  color: #fff;
 }
 
 @keyframes lead-header {
@@ -43,13 +64,13 @@
 }
 @keyframes pulsing-animation {
   0% {
-    color: var(--color-primary); /* starting color */
+    color: var(--light-primary); /* starting color */
   }
   50% {
     color: var(--color-secondary); /* halfway color */
   }
   100% {
-    color: var(--color-primary); /* ending color */
+    color: var(--light-primary); /* ending color */
   }
 }
 
@@ -60,6 +81,7 @@
   animation-timing-function: ease-in-out;
   animation-delay: 3s; /* delay until after the initial animation finishes */
   animation-iteration-count: infinite;
+  color: #fff;
 }
 .intro__text p {
   font-size: 3rem;
@@ -67,6 +89,9 @@
   animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
+  z-index: 2;
+
+  color: #fff;
 }
 
 @media only screen and (max-width: 900px) {

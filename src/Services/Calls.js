@@ -17,7 +17,7 @@ export default function Calls({ searchQuery }) {
         // const API_KEY = "ovS3DUChaQ0h3LQ1TT4_jpAl43VrMZCRFZcs2aLmILw";
         const API_KEY = "Z0tlw9QPJ4IqguNkjH8Su_qwKOvru9DZuFGfntPSkXc";
         const response = await fetch(
-          `https://api.unsplash.com/search/photos?page=1&per_page=20&client_id=${API_KEY}&query=${searchQuery}`
+          `https://api.unsplash.com/search/photos?page=1&per_page=24&client_id=${API_KEY}&query=${searchQuery}`
         );
         if (!response.ok) throw new Error(response.statusText);
 
@@ -36,10 +36,12 @@ export default function Calls({ searchQuery }) {
           setIsPending(false);
           setImages(fetchedImages);
         }
+        return fetchedImages;
       } catch (error) {
         setIsPending(false);
         console.log(error);
       }
+
       console.log("Yessir");
     };
     fetchImages();
@@ -67,10 +69,21 @@ export default function Calls({ searchQuery }) {
                   loading="lazy"
                   src={image.urls.regular}
                   alt={image.alt_description}
+                  draggable="false"
                 />
                 <div className="details">
                   <p className="username">
-                    By: <span> {image.user.name}</span>
+                    <span>
+                      By:
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={image.user.links.html}
+                      >
+                        {" "}
+                        {image.user.name}
+                      </a>
+                    </span>
                   </p>
                   <div className="socials">
                     {" "}

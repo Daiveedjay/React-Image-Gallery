@@ -26,6 +26,38 @@
   border-color: #ff3d00;
 }
 
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  gap: 0rem;
+  padding: 2rem;
+  overflow: hidden;
+  height: auto;
+  background: var(--light-primary);
+  box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  row-gap: 2rem;
+}
+
+.masonry-grid-item {
+  padding: 3rem 2rem;
+  overflow: hidden;
+  height: auto;
+  max-height: 500px;
+  position: relative;
+  transition: all ease-in 0.3s;
+}
+
+.masonry-grid-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  /* position: relative; */
+}
+
 .error--modal {
   font-size: 2rem;
   position: absolute;
@@ -107,6 +139,8 @@
   text-transform: capitalize;
 }
 
-.username span {
+.username span a {
   font-weight: 700;
+  text-decoration: none;
+  color: var(--color-primary);
 }

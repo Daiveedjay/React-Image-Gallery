@@ -11,7 +11,7 @@
   left: 0;
   background: var(--light-primary);
   color: var(--color-primary);
-  z-index: 2;
+  z-index: 3;
 }
 
 .logo {
